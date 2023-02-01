@@ -20,6 +20,8 @@
 package io.github.rypofalem.armorstandeditor;
 
 import com.google.common.collect.ImmutableList;
+import dev.lone.itemsadder.api.CustomFurniture;
+import dev.lone.itemsadder.api.ItemsAdder;
 import io.github.rypofalem.armorstandeditor.menu.ASEHolder;
 import io.github.rypofalem.armorstandeditor.protections.*;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
@@ -85,10 +87,12 @@ public class PlayerEditorManager implements Listener {
         }
         if (event.getEntity() instanceof ArmorStand) {
             ArmorStand as = (ArmorStand) event.getEntity();
-            getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
-            event.setCancelled(true);
-            if (canEdit(player, as))
-                applyLeftTool(player, as);
+            if (CustomFurniture.byAlreadySpawned(as) == null) {
+                getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
+                event.setCancelled(true);
+                if (canEdit(player, as))
+                    applyLeftTool(player, as);
+            }
         } else if (event.getEntity() instanceof ItemFrame) {
             ItemFrame itemf = (ItemFrame) event.getEntity();
             getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
@@ -109,10 +113,15 @@ public class PlayerEditorManager implements Listener {
 
             if (!canEdit(player, as)) return;
             if (plugin.isEditTool(player.getInventory().getItemInMainHand())) {
-                getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
-                event.setCancelled(true);
-                applyRightTool(player, as);
-                return;
+                if (CustomFurniture.byAlreadySpawned(as) == null) {
+                    System.out.println("Not a custom furniture");
+                    getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
+                    event.setCancelled(true);
+                    applyRightTool(player, as);
+                    return;
+                } else {
+                    return;
+                }
             }
 
 
