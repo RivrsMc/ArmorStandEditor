@@ -114,7 +114,6 @@ public class PlayerEditorManager implements Listener {
             if (!canEdit(player, as)) return;
             if (plugin.isEditTool(player.getInventory().getItemInMainHand())) {
                 if (CustomFurniture.byAlreadySpawned(as) == null) {
-                    System.out.println("Not a custom furniture");
                     getPlayerEditor(player.getUniqueId()).cancelOpenMenu();
                     event.setCancelled(true);
                     applyRightTool(player, as);
