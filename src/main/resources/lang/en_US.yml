@@ -25,6 +25,7 @@ setmode:
   invisible: Toggle Visibility
   size: Toggle Size
   disableslots: Toggle Disable Slots
+  vulnerability: Toggle Vulnerability
   gravity: Toggle Gravity
   baseplate: Toggle BasePlate
   placement: Placement
@@ -33,6 +34,7 @@ setmode:
   paste: Paste
   reset: Reset Pose
   itemframe: Toggle Itemframe Visibility
+  playerhead: Get a Players Head
 setaxis:
   msg: Setting axis to <x>.
   x: X
@@ -58,20 +60,36 @@ pasted:
   msg: ArmorStand state pasted from slot <x>.
 disabledslots:
   msg: Toggled Equipment locks
+toggleinvulnerability:
+  msg: ArmorStand vulnerability state has been toggled to <x>.
+  true: invulnerable
+  false: vulnerable
 target:
   msg: ArmorStand target locked.
 notarget:
-  msg: ArmorStand target unlocked.
+  msg: <x> target unlocked.
+  armorstand: ArmorStand
+  itemframe: ItemFrame
 frametarget:
-  msg: Itemframe target locked
-noframetarget:
-  msg: Itemframe target unlocked.
+  msg: Itemframe target locked.
 give:
   msg: Player given Item with CustomModelData
 doubletarget:
   msg: Please look at either an ArmorStand or an ItemFrame, not both!
+nodoubletarget:
+  msg: Please look at an ArmorStand or an ItemFrame before switching hands!
 reloaded:
   msg: Configuration File has been reloaded.
+playerhead:
+  msg: Player Head retrieved.
+playerheaderror:
+  msg: Unable to give you a playerhead.
+unabledestroycreative:
+  msg: Unable to Destroy this Invulnerable ArmorStand in Creative Mode.
+notincorrectworld:
+  msg: Sorry but you are not in the correct world to use ArmorStandEditor.
+stats:
+  msg: Here are the statistics for your ArmorStand.
 help:
   msg: "1. Hold the editing tool(<x>) in your main hand
 
@@ -92,12 +110,32 @@ helptips:
   3. You can use crouch + scroll wheel while holding the edit tool to change Axis without opening the menu"
 helpurl:
   msg: "More info: https://github.com/RypoFalem/ArmorStandEditor/wiki"
+helpdiscord:
+  msg: "or join our Discord: https://discord.gg/3BbJKWpTCj"
 
 #warn
 cantedit:
   msg: Sorry, you cannot edit armor stands here!
 noperm:
   msg: You don't have permission to use this!
+nopermoption:
+  msg: You don't have permission to use the <x> Option!
+  basic: Normal ArmorStand
+  showarms: Show Arms
+  armorstandvisibility: Armor Stand Visibility
+  baseplate: Set Baseplate Visibility
+  gravity: Toggle Gravity
+  vulnerability: Toggle Vulnerability
+  itemframevisibility: Item Frame Visibility
+  size: Toggle ArmorStand Size
+  disableslots: Toggle Equipment Lock
+  paste: Paste ArmorStand Config
+  copy: Copy ArmorStand Config
+  reset: Reset ArmorStand Config
+  stats: View ArmorStand Statistics
+  armorstandglow: Toggle ArmorStand Glow
+norangestats:
+  msg: Please get next to an ArmorStand before running this command.
 noslotnumcom:
   msg: You must specify a slot number!
 noadjcom:
@@ -109,13 +147,19 @@ nomodecom:
 noreloadcom:
   msg: You don't have permission to use the reload command!
 nogive:
-  msg: You do not have permission to use the give command.
+  msg: "You either do not have the permission to use the give command or do not allow it in Config.yml"
+noconsolecom:
+  msg: Sorry but this command only works from in-game and not from Console!
+renamestopped:
+  msg: Please make sure you have the ability/permission to give your ArmorStand Colored Names.
 
 #menutitle
 mainmenutitle:
   msg: Armor Stand Editor Menu
 equiptitle:
   msg: ArmorStand Equipment
+presettitle:
+  msg: Pre-Set ArmorStand Poses
 
 #icons
 xaxis:
@@ -129,7 +173,7 @@ yaxis:
 zaxis:
   msg: Z Axis
   description:
-    msg: Rotate body parts along the Z Axis
+    msg: Rotate body part s along the Z Axis
 coarseadj:
   msg: Coarse Adjustment
   description:
@@ -182,6 +226,10 @@ disableslots:
   msg: Disable Slots
   description:
     msg: Enable and disable equipment lock
+vulnerability:
+  msg: Toggle Vulnerability
+  description:
+    msg: Toggles an ArmorStand's vulnerability state
 gravity:
   msg: Gravity
   description:
@@ -222,6 +270,18 @@ itemframevisible:
   msg: Itemframe Visibility
   description:
     msg: Toggles an itemframes visibility
+playerheadmenu:
+  msg: Player Head
+  description:
+    msg: Click me to get a copy of your own head
+blankslot:
+  msg: Nothing here
+  description:
+    msg: Just a placeholder item. Clicking me will not do anything.
+armorstandglow:
+  msg: Toggle ArmorStand Glow
+  description:
+    msg: Turn ArmorStand Glowing on or off.
 
 #icons (equipment menu)
 disabled:
@@ -242,3 +302,69 @@ equipslot:
   boots: Feetsies
   rhand: Right Hand
   lhand: Left Hand
+
+#all things related to Presets
+presetmenu:
+  msg: Preset Poses
+  description:
+    msg: Use a Preset Pose for your ArmorStand [Will Open another Menu]
+
+#icons (Preset Menu)
+sitting:
+  msg: Sitting
+  description:
+    msg: Time to sit back and relax.
+waving:
+  msg: Waving
+  description:
+    msg: Hey, Over here!
+greeting 1:
+  msg: Greeting 1
+  description:
+    msg: Greetings, I am your Armor Stand.
+greeting 2:
+  msg: Greeting 2
+  description:
+    msg: Oh Hey there, I am your Armor Stand.
+archer:
+  msg: Archer
+  description:
+    msg: Watch out, your Armor Stand is about to shoot you :O
+dancing:
+  msg: Dancing
+  description:
+    msg: Hey there, would you like a dance?
+cheers:
+  msg: Cheers
+  description:
+    msg: Lets Cheers to this!
+hanging:
+  msg: Hanging
+  description:
+    msg: Time to hang onto this mountain like our life depended on it.
+present:
+  msg: Present
+  description:
+    msg: Your ArmorStand has a present for you <3
+fishing:
+  msg: Fishing
+  description:
+    msg: Time yo go on a fishing trip
+
+#Help for Presets
+backtomenu:
+  msg: Back to Menu
+  description:
+    msg: Click me to go back to the main menu
+howtopreset:
+  msg: How To
+  description:
+    msg: A short message on how to use presets.
+howtopresetmsg:
+  msg: "1. Hold the editing tool in your main hand
+  
+  2. Open the Menu with Preset Mode Active.
+  
+  3. Choose one of the Armor Stand Presets that you want to select. 
+  
+  4. After choosing, your menu will close and your chosen preset will be applied. "

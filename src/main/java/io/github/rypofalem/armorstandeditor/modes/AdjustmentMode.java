@@ -1,6 +1,6 @@
 /*
  * ArmorStandEditor: Bukkit plugin to allow editing armor stand attributes
- * Copyright (C) 2016  RypoFalem
+ * Copyright (C) 2016-2023  RypoFalem
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,11 +24,11 @@ public enum AdjustmentMode {
 
     private String name;
 
-    AdjustmentMode(String name){
+    AdjustmentMode(String name) {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

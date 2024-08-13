@@ -19,6 +19,7 @@ setmode:
   invisible: Перемкнути видимість
   size: Перемкнути розмір
   disableslots: Перемкнути вимкнені слоти
+  vulnerability: Toggle Vulnerability
   gravity: Перемкнути гравітацію
   baseplate: Перемкнути плиту
   placement: Розташування
@@ -41,6 +42,10 @@ setgravity:
   msg: Гравітація <x>.
   true: увімкнена
   false: вимкнена
+toggleinvulnerability:
+  msg: ArmorStand vulnerability state has been toggled to <x>.
+  true: invulnerable
+  false: vulnerable
 nomode:
   msg: Натисни інструментом редагування поза стендом щоб обрати режим!
 nomodeif:
@@ -52,16 +57,48 @@ pasted:
 target:
   msg: Ціль стенду заблоковано.
 notarget:
-  msg: Ціль стенду розблоковано.
+  msg: <x> target unlocked.
+  armorstand: ArmorStand
+  itemframe: ItemFrame
 give:
   msg: Player given Item with CustomModelData
-
-  
+nodoubletarget:
+  msg: Please look at an ArmorStand or an ItemFrame before switching hands!
+playerhead:
+  msg: Player Head retrieved.
+noplayerhead:
+  msg: Please turn on the ability to retrieve player heads in the config file.
+playerheaderror:
+  msg: Unable to Retrieve Player Head.
+notincorrectworld:
+  msg: Sorry but you are not in the correct world to use ArmorStandEditor.
+unabledestroycreative:
+  msg: Unable to Destroy this Invulnerable ArmorStand in Creative Mode.
+stats:
+  msg: Here are the statistics for your ArmorStand.
 #warn  
 cantedit:
   msg: Ти не можеш змінювати стенди тут!
 noperm:
   msg: У тебе нема прав!
+nopermoption:
+  msg: You don't have permission to use the <x> Option!
+  basic: Normal ArmorStand
+  showarms: Show Arms
+  armorstandvisibility: Armor Stand Visibility
+  baseplate: Set Baseplate Visibility
+  gravity: Toggle Gravity
+  vulnerability: Toggle Vulnerability!
+  itemframevisibility: Item Frame Visibility
+  size: Toggle ArmorStand Size
+  disableslots: Toggle Equipment Lock
+  paste: Paste ArmorStand Config
+  copy: Copy ArmorStand Config
+  reset: Reset ArmorStand Config
+  stats: View ArmorStand Statistics
+  armorstandglow: Toggle ArmorStand Glow
+norangestats:
+  msg: Please get next to an ArmorStand before running this command.
 noslotnumcom:
   msg: Уточніть слот!
 noadjcom:
@@ -172,6 +209,26 @@ copyslot:
   msg: Копіюєм в слот <x>
   description:
     msg: Оберіть слот щоб зберегти налаштування
+vulnerability:
+  msg: Toggle Vulnerability
+  description:
+    msg: Toggles an item's vulnerability state
+itemframevisible:
+  msg: Itemframe Visibility
+  description:
+    msg: Toggles an itemframes visibility
+playerheadmenu:
+  msg: Player Head
+  description:
+    msg: Please use /ase playerhead <name>
+blankslot:
+  msg: Nothing here
+  description:
+    msg: Just a placeholder item. Clicking me will not do anything.
+armorstandglow:
+  msg: Toggle ArmorStand Glow
+  description:
+    msg: Turn ArmorStand Glowing on or off.
 
 #icons (equipment)
 disabled:
@@ -192,3 +249,69 @@ equipslot:
   boots: Черевики
   rhand: Права рука
   lhand: Ліва рука
+
+#all things related to Presets
+presetmenu:
+  msg: Preset Poses
+  description:
+    msg: Use a Preset Pose for your ArmorStand [Will Open another Menu]
+
+#icons (Preset Menu)
+sitting:
+  msg: Sitting
+  description:
+    msg: Time to sit back and relax.
+waving:
+  msg: Waving
+  description:
+    msg: Hey, Over here!
+greeting 1:
+  msg: Greeting 1
+  description:
+    msg: Greetings, I am your Armor Stand.
+greeting 2:
+  msg: Greeting 2
+  description:
+    msg: Oh Hey there, I am your Armor Stand.
+archer:
+  msg: Archer
+  description:
+    msg: Watch out, your Armor Stand is about to shoot you :O
+dancing:
+  msg: Dancing
+  description:
+    msg: Hey there, would you like a dance?
+cheers:
+  msg: Cheers
+  description:
+    msg: Lets Cheers to this!
+hanging:
+  msg: Hanging
+  description:
+    msg: Time to hang onto this mountain like our life depended on it.
+present:
+  msg: Present
+  description:
+    msg: Your ArmorStand has a present for you <3
+fishing:
+  msg: Fishing
+  description:
+    msg: Time yo go on a fishing trip
+
+#Help for Presets
+backtomenu:
+  msg: Back to Menu
+  description:
+    msg: Click me to go back to the main menu
+howtopreset:
+  msg: How To
+  description:
+    msg: A short message on how to use presets.
+howtopresetmsg:
+  msg: "1. Hold the editing tool in your main hand
+  
+  2. Open the Menu with Preset Mode Active.
+  
+  3. Choose one of the Armor Stand Presets that you want to select. 
+  
+  4. After choosing, your menu will close and your chosen preset will be applied. "

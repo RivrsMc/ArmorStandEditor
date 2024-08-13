@@ -1,6 +1,6 @@
 /*
  * ArmorStandEditor: Bukkit plugin to allow editing armor stand attributes
- * Copyright (C) 2016  RypoFalem
+ * Copyright (C) 2016-2023  RypoFalem
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,7 +28,7 @@ public class ArmorStandData {
     public boolean visible, size, basePlate, gravity, showArms;
     public ItemStack head, body, legs, feetsies, rightHand, leftHand;
 
-    ArmorStandData(ArmorStand as){
+    ArmorStandData(ArmorStand as) {
         this.headPos = as.getHeadPose();
         this.leftArmPos = as.getLeftArmPose();
         this.rightArmPos = as.getRightArmPose();
