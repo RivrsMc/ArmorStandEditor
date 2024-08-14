@@ -1,0 +1,114 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.openrewrite.rewrite' version '5.31.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group = 'io.github.rypofalem.armorstandeditor'
+version = '1.21-47.1'
+
+repositories {
+    maven {
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+    maven {
+        url = 'https://maven.enginehub.org/repo/'
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        url = 'https://s01.oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        url = 'https://repo.glaremasters.me/repository/towny/'
+    }
+    maven {
+        url = 'https://repo.glaremasters.me/repository/bloodshot/'
+    }
+    maven {
+        url = 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/'
+    }
+    maven {
+        url = 'https://jitpack.io'
+    }
+    maven {
+        url = 'https://repo.bg-software.com/repository/api/'
+    }
+    maven {
+        url = 'https://repo.codemc.org/repository/maven-public/'
+    }
+}
+
+dependencies {
+    // Spigot + Folia API
+    compileOnly('io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT') {
+        exclude group: 'net.kyori', module: 'adventure-api'
+    }
+
+    compileOnly 'net.kyori:adventure-api:4.17.0'
+
+    compileOnly('dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT') {
+        exclude group: 'net.kyori', module: 'adventure-api'
+    }
+
+    // WorldGuard
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT'
+
+    // PlotSquared
+    compileOnly('com.intellectualsites.plotsquared:plotsquared-core:7.3.8') {
+        exclude group: '*', module: 'adventure'
+        exclude group: 'net.kyori', module: '*'
+    }
+
+    compileOnly('com.intellectualsites.plotsquared:plotsquared-bukkit:7.3.8') {
+        exclude group: '*', module: 'plotsquared-core'
+        exclude group: 'net.kyori', module: '*'
+    }
+
+    // GriefPrevention (Deprecated)
+    compileOnly 'com.github.TechFortress:GriefPrevention:17.0.0'
+
+    // Towny
+    compileOnly 'com.palmergames.bukkit.towny:towny:0.100.2.9'
+
+    // UpdateChecker
+    implementation 'com.jeff_media:SpigotUpdateChecker:3.0.3'
+
+    // SuperiorSkyblock API
+    compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2024.1'
+
+    // GriefDefender
+    compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') {
+        exclude group: 'net.kyori', module: '*'
+    }
+
+    // Lands
+    compileOnly 'com.github.angeschossen:LandsAPI:7.1.12'
+
+    // Bentobox
+    //compileOnly 'world.bentobox:bentobox:1.23.2'
+
+    // ItemAdder
+    compileOnly 'com.github.LoneDev6:api-itemsadder:3.6.1'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+tasks.shadowJar {
+    configurations = [project.configurations.runtimeClasspath]
+    relocate 'com.jeff_media.updatechecker', 'io.github.rypofalem.armorstandeditor.updatechecker'
+}
+
+tasks.compileJava {
+    options.release.set(21)
+}
