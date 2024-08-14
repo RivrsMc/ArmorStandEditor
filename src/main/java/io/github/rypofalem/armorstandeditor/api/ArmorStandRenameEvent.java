@@ -16,31 +16,44 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+package io.github.rypofalem.armorstandeditor.api;
 
-package io.github.rypofalem.armorstandeditor.modes;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.HandlerList;
 
-public class CopySlots {
-    ArmorStandData[] slots = new ArmorStandData[9];
-    public byte currentSlot = 0;
+public class ArmorStandRenameEvent extends ArmorStandEvent implements Cancellable {
 
-    //returns true if parameters are acceptable, false otherwise.
-    public boolean changeSlots(byte slot) {
-        if (slot < slots.length && slot >= 0) {
-            currentSlot = slot;
-            return true;
-        } else {
-            return false;
-        }
+    @Getter
+    @Setter
+    private boolean cancelled = false;
+    @Getter
+    @Setter
+    protected String name;
+
+    @Getter
+    protected final Player player;
+
+    public ArmorStandRenameEvent(ArmorStand armorStand, Player player, String name) {
+        super(armorStand);
+        this.player = player;
+        this.name = name;
     }
 
-    public void copyDataToSlot(ArmorStand armorStand) {
-        slots[currentSlot] = new ArmorStandData(armorStand);
+    /* Generated for Bukkit */
+    private static final HandlerList handlers = new HandlerList();
+
+    public static HandlerList getHandlerList() {
+        return (handlers);
     }
 
-    //returns null if there is not data in current slot
-    public ArmorStandData getDataToPaste() {
-        return slots[currentSlot];
+    @Override
+    public HandlerList getHandlers() {
+        return (handlers);
     }
+
 }

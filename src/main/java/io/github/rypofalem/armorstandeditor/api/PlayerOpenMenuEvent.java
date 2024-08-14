@@ -16,11 +16,37 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package io.github.rypofalem.armorstandeditor.protections;
+package io.github.rypofalem.armorstandeditor.api;
 
-import org.bukkit.block.Block;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 
-public interface Protection {
-    boolean checkPermission(Block block, Player player);
+public class PlayerOpenMenuEvent extends Event implements Cancellable {
+    @Getter
+    @Setter
+    private boolean cancelled = false;
+
+    @Getter
+    protected final Player player;
+
+    public PlayerOpenMenuEvent(Player player) {
+        this.player = player;
+    }
+
+    /* Generated for Bukkit */
+    private static final HandlerList handlers = new HandlerList();
+
+    public static HandlerList getHandlerList() {
+        return (handlers);
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return (handlers);
+    }
 }
